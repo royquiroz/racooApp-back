@@ -25,6 +25,12 @@ const companySchema = new Schema(
         ref: "Client"
       }
     ],
+    calls: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Calls"
+      }
+    ],
     isDelete: {
       type: Boolean,
       default: false

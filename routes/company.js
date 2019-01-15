@@ -21,11 +21,11 @@ router.post("/", auth.verifyToken, (req, res) => {
 
 router.get("/", auth.verifyToken, (req, res) => {
   Company.find({ isDelete: false })
-    .then(companys => {
+    .then(companies => {
       res.status(200).json({
         err: false,
-        companys,
-        msg: `Compañias encontradas ${companys.length}`
+        companies,
+        msg: `Compañias encontradas ${companies.length}`
       });
     })
     .catch(err => {
@@ -38,6 +38,7 @@ router.get("/", auth.verifyToken, (req, res) => {
 
 router.get("/:id", auth.verifyToken, (req, res) => {
   Company.findById(req.params.id)
+    .populate("clients", "name last_name")
     .then(company => {
       res.status(200).json({
         err: false,
