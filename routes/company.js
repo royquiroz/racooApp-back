@@ -38,7 +38,7 @@ router.get("/", auth.verifyToken, (req, res) => {
 
 router.get("/:id", auth.verifyToken, (req, res) => {
   Company.findById(req.params.id)
-    .populate("clients", "name last_name")
+    .populate("clients", "name last_name calls")
     .then(company => {
       res.status(200).json({
         err: false,
