@@ -3,12 +3,15 @@ const Schema = mongoose.Schema;
 
 const clientSchema = new Schema(
   {
+    company: {
+      type: Schema.Types.ObjectId,
+      ref: "Company"
+    },
     name: {
       type: String,
       required: "Campo de nombre obligatorio"
     },
     last_name: String,
-    telephone: Number,
     extension: Number,
     positions: [String],
     description: String,
