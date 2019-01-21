@@ -7,11 +7,12 @@ const auth = require("../helpers/auth");
 router.post("/", auth.verifyToken, (req, res) => {
   Client.create(req.body)
     .then(client => {
-      Company.findByIdAndUpdate(req.body.companyId, {
+      Company.findByIdAndUpdate(req.body.company, {
         $push: { clients: client._id }
       }).then(() => {
         res.status(200).json({
           err: false,
+          client,
           msg: `Cliente creado con exito`
         });
       });
