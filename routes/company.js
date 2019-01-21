@@ -4,14 +4,18 @@ const Company = require("../models/Company");
 const auth = require("../helpers/auth");
 
 router.post("/", auth.verifyToken, (req, res) => {
+  console.log(req.body);
+
   Company.create(req.body)
-    .then(company => {
+    .then(() => {
       res.status(200).json({
         err: false,
         msg: `Compañia creada con exito`
       });
     })
     .catch(err => {
+      console.log(err);
+
       res.status(500).json({
         err,
         msg: "Error al dar de alta la compañia"

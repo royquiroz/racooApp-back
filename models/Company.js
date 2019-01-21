@@ -10,12 +10,16 @@ const companySchema = new Schema(
     },
     name: {
       type: String,
-      unique: true
+      index: true,
+      unique: true,
+      sparse: true
     },
     number: Number,
     lawyer: {
       type: String,
-      unique: true
+      index: true,
+      unique: true,
+      sparse: true
     },
     state: Number,
     image: String,
