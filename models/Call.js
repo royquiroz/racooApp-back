@@ -26,6 +26,23 @@ const callSchema = new Schema(
       enum: ["PRODUCTIVE", "UNPRODUCTIVE"],
       default: "PRODUCTIVE"
     },
+    classification: {
+      type: Number,
+      min: 1,
+      max: 3
+    },
+    system: {
+      type: String,
+      enum: [
+        "MINOTARIA",
+        "CALCULOFACIl",
+        "LISTASPB",
+        "CFDI",
+        "UIF",
+        "RACOO NOTARIOS"
+      ],
+      default: "MINOTARIA"
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User"

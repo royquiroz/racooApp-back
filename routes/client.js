@@ -45,6 +45,7 @@ router.get("/", auth.verifyToken, (req, res) => {
 
 router.get("/:id", auth.verifyToken, (req, res) => {
   Client.findById(req.params.id)
+    .populate("company", "kind name number")
     .then(client => {
       res.status(200).json({
         err: false,
