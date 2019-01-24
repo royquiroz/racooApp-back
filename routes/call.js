@@ -26,6 +26,8 @@ router.post("/", auth.verifyToken, (req, res) => {
 
 router.get("/", auth.verifyToken, (req, res) => {
   Call.find({ isDelete: false })
+    .populate("client", "name last_name")
+    .populate("user", "name last_name")
     .then(calls => {
       res.status(200).json({
         err: false,

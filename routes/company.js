@@ -24,6 +24,7 @@ router.post("/", auth.verifyToken, (req, res) => {
 
 router.get("/", auth.verifyToken, (req, res) => {
   Company.find({ isDelete: false })
+    .populate("clients", "name last_name")
     .then(companies => {
       res.status(200).json({
         err: false,
