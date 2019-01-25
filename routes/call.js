@@ -2,17 +2,25 @@ const express = require("express");
 const router = express.Router();
 const Call = require("../models/Call");
 const Client = require("../models/Client");
+const Company = require("../models/Company");
 const auth = require("../helpers/auth");
 
 router.post("/", auth.verifyToken, (req, res) => {
+  console.log(req.body);
+
   Call.create(req.body)
     .then(call => {
       Client.findByIdAndUpdate(req.body.client, {
         $push: { calls: call._id }
       }).then(() => {
-        res.status(200).json({
-          err: false,
-          msg: `LLamada creada con exito`
+        Company.findByIdAndUpdate(req.body.company, {
+          $push: { calls: call.id }
+        }).then(() => {
+          res.status(200).json({
+            err: false,
+            call,
+            msg: `Llamada creada con exito`
+          });
         });
       });
     })

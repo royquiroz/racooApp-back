@@ -8,8 +8,7 @@ const callSchema = new Schema(
       required: "El campo del problema es obligatorio"
     },
     solution: {
-      type: String,
-      required: "El campo de la solucion es obligatorio"
+      type: String
     },
     status: {
       type: String,
