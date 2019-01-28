@@ -42,6 +42,8 @@ router.get("/", auth.verifyToken, (req, res) => {
 
 router.get("/:id", auth.verifyToken, (req, res) => {
   Company.findById(req.params.id)
+    .populate({ path: "calls", populate: { path: "user" } })
+    .populate({ path: "calls", populate: { path: "client" } })
     .populate("clients", "name last_name calls")
     .then(company => {
       res.status(200).json({
@@ -51,6 +53,7 @@ router.get("/:id", auth.verifyToken, (req, res) => {
       });
     })
     .catch(err => {
+      console.log(err);
       res.status(500).json({
         err: err,
         msg: "Error al realizar la busqueda de las compañia"

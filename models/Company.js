@@ -32,7 +32,7 @@ const companySchema = new Schema(
     calls: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Calls"
+        ref: "Call"
       }
     ],
     isDelete: {
