@@ -28,7 +28,7 @@ const callSchema = new Schema(
       type: Number,
       min: 1,
       max: 3,
-      default: 0
+      default: 1
     },
     system: {
       type: String,
