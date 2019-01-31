@@ -74,4 +74,23 @@ router.get("/:id", auth.verifyToken, (req, res) => {
     });
 });
 
+router.patch("/:id", auth.verifyToken, (req, res) => {
+  Call.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true }).then(
+    call => {
+      res
+        .status(200)
+        .json({
+          call,
+          msg: `Ubicacion con el id: ${req.params.id} editada`
+        })
+        .catch(err => {
+          res.status(500).json({
+            err,
+            msg: "Error al editar la llamada"
+          });
+        });
+    }
+  );
+});
+
 module.exports = router;

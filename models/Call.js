@@ -22,19 +22,19 @@ const callSchema = new Schema(
     },
     ending: {
       type: String,
-      enum: ["PRODUCTIVE", "UNPRODUCTIVE"],
-      default: "PRODUCTIVE"
+      enum: ["PRODUCTIVE", "UNPRODUCTIVE"]
     },
     classification: {
       type: Number,
       min: 1,
-      max: 3
+      max: 3,
+      default: 0
     },
     system: {
       type: String,
       enum: [
         "MINOTARIA",
-        "CALCULOFACIl",
+        "CALCULOFACIL",
         "LISTASPB",
         "CFDI",
         "UIF",
