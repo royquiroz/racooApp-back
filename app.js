@@ -40,7 +40,11 @@ app.use(cookieParser());
 // CORS
 app.use(
   cors({
-    origin: ["https://racooapp.herokuapp.com/", "http://localhost:3001"]
+    origin: [
+      "https://racooapp.herokuapp.com/",
+      "http://localhost:3001",
+      "http://racooapp.s3-website-us-east-1.amazonaws.com"
+    ]
   })
 );
 
