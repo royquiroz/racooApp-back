@@ -12,6 +12,7 @@ const clientSchema = new Schema(
       required: "Campo de nombre obligatorio"
     },
     last_name: String,
+    telephone: Number,
     extension: Number,
     positions: [String],
     description: String,

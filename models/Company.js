@@ -22,6 +22,7 @@ const companySchema = new Schema(
       sparse: true
     },
     state: Number,
+    telephone: Number,
     image: String,
     clients: [
       {

@@ -61,4 +61,25 @@ router.get("/:id", auth.verifyToken, (req, res) => {
     });
 });
 
+router.patch("/:id", auth.verifyToken, (req, res) => {
+  Company.findByIdAndUpdate(
+    req.params.id,
+    { $set: req.body },
+    { new: true }
+  ).then(company => {
+    res
+      .status(200)
+      .json({
+        company,
+        msg: `Compañia editada exitosamente`
+      })
+      .catch(err => {
+        res.status(500).json({
+          err,
+          msg: "Error al editar la compañia"
+        });
+      });
+  });
+});
+
 module.exports = router;

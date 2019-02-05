@@ -62,4 +62,25 @@ router.get("/:id", auth.verifyToken, (req, res) => {
     });
 });
 
+router.patch("/:id", auth.verifyToken, (req, res) => {
+  Client.findByIdAndUpdate(
+    req.params.id,
+    { $set: req.body },
+    { new: true }
+  ).then(client => {
+    res
+      .status(200)
+      .json({
+        client,
+        msg: `Cliente editado exitosamente`
+      })
+      .catch(err => {
+        res.status(500).json({
+          err,
+          msg: "Error al editar el cliente"
+        });
+      });
+  });
+});
+
 module.exports = router;
