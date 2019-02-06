@@ -53,6 +53,11 @@ const callSchema = new Schema(
     isDelete: {
       type: Boolean,
       default: false
+    },
+    prev_db_user: String,
+    prev_db: {
+      type: Boolean,
+      default: false
     }
   },
   {
