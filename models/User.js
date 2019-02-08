@@ -21,7 +21,11 @@ const userSchema = new Schema(
       enum: ["ADMIN", "USER"],
       default: "USER"
     },
-    img_profile: String
+    img_profile: {
+      type: String,
+      default:
+        "https://res.cloudinary.com/royquiroz/image/upload/v1547066938/male-face01_n03jts.png"
+    }
   },
   {
     timestamps: {
