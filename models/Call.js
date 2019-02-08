@@ -39,8 +39,7 @@ const callSchema = new Schema(
         "CFDI",
         "UIF",
         "RACOO NOTARIOS"
-      ],
-      default: "MINOTARIA"
+      ]
     },
     user: {
       type: Schema.Types.ObjectId,

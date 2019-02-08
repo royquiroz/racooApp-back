@@ -39,7 +39,11 @@ router.get("/", auth.verifyToken, (req, res) => {
       $lt: new Date(req.query.fin + "T23:59:59.999Z")
     }
   })
-    .populate("client", "name last_name")
+    .populate({
+      path: "client",
+      select: "name last_name",
+      populate: { path: "company", select: "kind lawyer name" }
+    })
     .populate("user", "name last_name")
     .then(calls => {
       res.status(200).json({
