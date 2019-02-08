@@ -33,7 +33,12 @@ router.post("/", auth.verifyToken, (req, res) => {
 });
 
 router.get("/", auth.verifyToken, (req, res) => {
-  Call.find({ isDelete: false })
+  Call.find({
+    created_at: {
+      $gte: new Date(req.query.init + "T00:00:00.000Z"),
+      $lt: new Date(req.query.fin + "T23:59:59.999Z")
+    }
+  })
     .populate("client", "name last_name")
     .populate("user", "name last_name")
     .then(calls => {

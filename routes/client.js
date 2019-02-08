@@ -26,7 +26,10 @@ router.post("/", auth.verifyToken, (req, res) => {
 });
 
 router.get("/", auth.verifyToken, (req, res) => {
-  Client.find({ isDelete: false })
+  var regexp = new RegExp(req.query.name, "i");
+  console.log(regexp);
+
+  Client.find({ name: regexp, isDelete: false })
     .populate("company", "kind number name")
     .then(clients => {
       res.status(200).json({
