@@ -6,8 +6,6 @@ const Company = require("../models/Company");
 const auth = require("../helpers/auth");
 
 router.post("/", auth.verifyToken, (req, res) => {
-  console.log(req.body);
-
   Call.create(req.body)
     .then(call => {
       Client.findByIdAndUpdate(req.body.client, {

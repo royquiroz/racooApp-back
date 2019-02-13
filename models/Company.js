@@ -21,6 +21,7 @@ const companySchema = new Schema(
       unique: true,
       sparse: true
     },
+    key: String,
     state: Number,
     telephone: Number,
     image: String,
