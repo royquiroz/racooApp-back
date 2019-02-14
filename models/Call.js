@@ -45,6 +45,16 @@ const callSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User"
     },
+    record: [
+      {
+        user: {
+          type: String
+        },
+        update: {
+          type: Date
+        }
+      }
+    ],
     client: {
       type: Schema.Types.ObjectId,
       ref: "Client"
