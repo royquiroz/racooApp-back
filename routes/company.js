@@ -30,10 +30,26 @@ router.get("/", auth.verifyToken, (req, res) => {
   req.query.checked === "true"
     ? (query.lawyer = regexp)
     : (query.name = regexp);
-  console.log(query);
 
   Company.find(query)
     .populate("clients", "name last_name")
+    .then(companies => {
+      res.status(200).json({
+        err: false,
+        companies,
+        msg: `Compañias encontradas ${companies.length}`
+      });
+    })
+    .catch(err => {
+      res.status(500).json({
+        err: err,
+        msg: "Error al realizar la busqueda de las compañias"
+      });
+    });
+});
+
+router.get("/all", auth.verifyToken, (req, res) => {
+  Company.find({}, { kind: 1, name: 1, lawyer: 1, number: 1, key: 1 })
     .then(companies => {
       res.status(200).json({
         err: false,

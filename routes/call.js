@@ -33,8 +33,8 @@ router.post("/", auth.verifyToken, (req, res) => {
 router.get("/", auth.verifyToken, (req, res) => {
   Call.find({
     created_at: {
-      $gte: new Date(req.query.init + "T00:00:00.000Z"),
-      $lt: new Date(req.query.fin + "T23:59:59.999Z")
+      $gte: new Date(req.query.init + "T06:00:00.000Z"),
+      $lte: new Date(req.query.fin + "T05:59:59.999Z")
     }
   })
     .populate({
@@ -63,7 +63,7 @@ router.get("/:id", auth.verifyToken, (req, res) => {
     .populate({
       path: "client",
       select: "name last_name",
-      populate: { path: "company", select: "kind lawyer name" }
+      populate: { path: "company", select: "kind lawyer name key" }
     })
     .populate("user", "name last_name")
     .then(call => {
