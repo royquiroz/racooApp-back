@@ -62,8 +62,8 @@ router.get("/:id", auth.verifyToken, (req, res) => {
   Call.findById(req.params.id)
     .populate({
       path: "client",
-      select: "name last_name",
-      populate: { path: "company", select: "kind lawyer name key" }
+      select: "name last_name telephone extension",
+      populate: { path: "company", select: "kind lawyer name key telephone" }
     })
     .populate("user", "name last_name")
     .then(call => {
