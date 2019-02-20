@@ -12,7 +12,14 @@ const callSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["PENDING", "FINALIZED"],
+      enum: [
+        "PENDING",
+        "FINALIZED",
+        "PENDING DEVELOPMENT",
+        "PENDING SUPPORT",
+        "PENDING VISITS",
+        "SALES"
+      ],
       default: "PENDING"
     },
     kind: {
@@ -52,6 +59,9 @@ const callSchema = new Schema(
         },
         update: {
           type: Date
+        },
+        history: {
+          type: String
         }
       }
     ],
