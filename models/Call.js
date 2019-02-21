@@ -45,7 +45,8 @@ const callSchema = new Schema(
         "LISTASPB",
         "CFDI",
         "UIF",
-        "RACOO NOTARIOS"
+        "RACOO NOTARIOS",
+        "MINOTARIA/IMPLEMENTACION"
       ]
     },
     user: {
@@ -61,7 +62,7 @@ const callSchema = new Schema(
           type: Date
         },
         history: {
-          type: String
+          type: Object
         }
       }
     ],
