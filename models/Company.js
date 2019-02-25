@@ -5,7 +5,8 @@ const companySchema = new Schema(
   {
     key: {
       type: String,
-      unique: true
+      unique: true,
+      required: "El campo del clave es obligatorio"
     },
     kind: {
       type: String,

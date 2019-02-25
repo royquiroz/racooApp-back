@@ -13,14 +13,14 @@ const callSchema = new Schema(
     status: {
       type: String,
       enum: [
-        "PENDING",
+        ,
         "FINALIZED",
         "PENDING DEVELOPMENT",
         "PENDING SUPPORT",
         "PENDING VISITS",
         "SALES"
       ],
-      default: "PENDING"
+      default: "PENDING SUPPORT"
     },
     kind: {
       type: String,
