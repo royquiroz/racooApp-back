@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 const companySchema = new Schema(
   {
+    key: {
+      type: String,
+      unique: true
+    },
     kind: {
       type: String,
       enum: ["NOTARY", "COMPANY"],
@@ -21,7 +25,6 @@ const companySchema = new Schema(
       unique: true,
       sparse: true
     },
-    key: String,
     state: Number,
     telephone: Number,
     image: String,

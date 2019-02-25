@@ -24,14 +24,11 @@ router.post("/", auth.verifyToken, (req, res) => {
 
 router.get("/", auth.verifyToken, (req, res) => {
   var regexp = new RegExp(req.query.name, "i");
-  let query = {
-    isDelete: false
-  };
-  req.query.checked === "true"
-    ? (query.lawyer = regexp)
-    : (query.name = regexp);
 
-  Company.find(query)
+  Company.find({
+    $or: [{ name: regexp }, { lawyer: regexp }, { key: regexp }],
+    isDelete: false
+  })
     .populate("clients", "name last_name")
     .then(companies => {
       res.status(200).json({
