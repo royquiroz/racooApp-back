@@ -66,6 +66,12 @@ const callSchema = new Schema(
         }
       }
     ],
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment"
+      }
+    ],
     client: {
       type: Schema.Types.ObjectId,
       ref: "Client"

@@ -65,6 +65,11 @@ router.get("/:id", auth.verifyToken, (req, res) => {
       select: "name last_name telephone extension",
       populate: { path: "company", select: "kind lawyer name key telephone" }
     })
+    .populate({
+      path: "comments",
+      select: "comment created_at",
+      populate: { path: "user", select: "name img_profile" }
+    })
     .populate("user", "name last_name")
     .then(call => {
       res.status(200).json({
