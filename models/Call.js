@@ -84,7 +84,8 @@ const callSchema = new Schema(
     prev_db: {
       type: Boolean,
       default: false
-    }
+    },
+    link: String
   },
   {
     timestamps: {
