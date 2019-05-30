@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 router.post("/search", async (req, res) => {
-  console.log(req.body);
 
   const user = await User.findOne({ email: req.body.email });
 
@@ -23,7 +22,6 @@ router.post("/change", (req, res) => {
   const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
   req.body.password = hashedPassword;
-  console.log(req.body);
 
   User.findOneAndUpdate(
     { email: req.body.email },
