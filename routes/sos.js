@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Sos = require("../models/Sos");
+const auth = require("../helpers/auth");
 
 router.post("/", (req, res) => {
   Sos.create(req.body)
@@ -19,7 +20,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
+router.get("/", auth.verifyToken, (req, res) => {
   Sos.find()
     .then(sos => {
       res.status(200).json({
@@ -31,6 +32,23 @@ router.get("/", (req, res) => {
       res.status(500).json({
         err,
         msg: "No se pudo conectar a la BD"
+      });
+    });
+});
+
+router.get("/:id", auth.verifyToken, (req, res) => {
+  Sos.findById(req.params.id)
+    .then(sos => {
+      res.status(200).json({
+        err: false,
+        sos,
+        msg: `Sos encontrado con exito`
+      });
+    })
+    .catch(err => {
+      res.status(500).json({
+        err: err,
+        msg: "Error al realizar la busqueda del sos"
       });
     });
 });

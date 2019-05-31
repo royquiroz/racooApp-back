@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const clientSchema = new Schema(
   {
+    id_minotaria: String,
     company: {
       type: Schema.Types.ObjectId,
       ref: "Company"
