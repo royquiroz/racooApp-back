@@ -18,6 +18,10 @@ const sosSchema = new Schema(
       type: String,
       required: "El problema es obligatorio"
     },
+    call: {
+      type: Schema.Types.ObjectId,
+      ref: "Call"
+    },
     isFinished: {
       type: Boolean,
       default: false

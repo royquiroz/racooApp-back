@@ -21,7 +21,7 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", auth.verifyToken, (req, res) => {
-  Sos.find()
+  Sos.find({ isFinished: false })
     .then(sos => {
       res.status(200).json({
         err: false,
@@ -51,6 +51,25 @@ router.get("/:id", auth.verifyToken, (req, res) => {
         msg: "Error al realizar la busqueda del sos"
       });
     });
+});
+
+router.patch("/:id", auth.verifyToken, (req, res) => {
+  Sos.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true }).then(
+    sos => {
+      res
+        .status(200)
+        .json({
+          sos,
+          msg: `Sos editado exitosamente`
+        })
+        .catch(err => {
+          res.status(500).json({
+            err,
+            msg: "Error al editar el sos"
+          });
+        });
+    }
+  );
 });
 
 module.exports = router;
