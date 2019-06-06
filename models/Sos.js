@@ -14,6 +14,10 @@ const sosSchema = new Schema(
       type: String,
       default: "SOS"
     },
+    system: {
+      type: String,
+      default: "MINOTARIA"
+    },
     problem: {
       type: String,
       required: "El problema es obligatorio"
