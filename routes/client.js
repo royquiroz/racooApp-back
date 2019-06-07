@@ -30,7 +30,7 @@ router.get("/", auth.verifyToken, (req, res) => {
   let regexp = new RegExp(req.query.name, "i");
   req.query.name === ""
     ? (query = { isDelete: false })
-    : { name: regexp, isDelete: false };
+    : (query = { name: regexp, isDelete: false });
   Client.find(query, { name: 1, company: 1, id_minotaria: 1 })
     .populate("company", "kind number name key")
     .then(clients => {
